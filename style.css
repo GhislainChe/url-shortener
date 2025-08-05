@@ -134,6 +134,13 @@ th, td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+}
+
+td:first-child {
+    max-width: 200px;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 th {
@@ -196,15 +203,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Make URLs wrap and truncate with ellipsis */
-tr td:first-child {
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: block;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
@@ -224,71 +222,8 @@ tr td:first-child {
         padding: 1rem;
     }
 
-        .input-group {
+    .input-group {
         flex-direction: column;
-    }
-    
-    /* Make table cells stack on mobile */
-    table, thead, tbody, th, td, tr { 
-        display: block; 
-    }
-    
-    /* Hide table headers on mobile */
-    thead tr { 
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-    
-    tr {
-        margin-bottom: 1rem;
-        border: 1px solid var(--border-color);
-        border-radius: var(--border-radius);
-        padding: 0.5rem;
-    }
-    
-    td {
-        border: none;
-        position: relative;
-        padding-left: 40%;
-        min-height: 2.5em;
-    }
-    
-    td:before {
-        position: absolute;
-        left: 0.5rem;
-        width: 35%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-    }
-    
-    /* Label the data */
-    td:nth-of-type(1):before { content: "Original URL"; }
-    td:nth-of-type(2):before { content: "Short URL"; }
-    td:nth-of-type(3):before { content: "Date"; }
-    td:nth-of-type(4):before { content: "Actions"; }
-    
-    /* Make action buttons take full width */
-    .actions {
-        display: flex;
-        justify-content: flex-start;
-        gap: 0.5rem;
-        padding-left: 0;
-    }
-    
-    /* Make URLs wrap and take full width */
-    tr td:first-child {
-        max-width: 100%;
-        white-space: normal;
-        word-break: break-all;
-        padding-left: 0.5rem;
-    }
-    
-    tr td:first-child:before {
-        position: static;
-        display: block;
-        margin-bottom: 0.25rem;
     }
 
     .btn-shorten {
@@ -298,12 +233,45 @@ tr td:first-child {
     }
 
     th, td {
-        padding: 0.75rem 0.5rem;
-        font-size: 0.9rem;
+        padding: 0.5rem;
+        font-size: 0.85rem;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    td:first-child {
+        max-width: 100%;
+        padding-bottom: 0.25rem;
+    }
+
+    td:nth-child(2) {
+        font-weight: 600;
+    }
+
+    td:last-child {
+        padding-top: 0.25rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border-color);
     }
 
     .actions {
-        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+
+    /* Make table rows stack on mobile */
+    tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 0.5rem;
+    }
+
+    /* Hide table header on mobile */
+    thead {
+        display: none;
     }
 }
 
