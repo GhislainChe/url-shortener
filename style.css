@@ -134,24 +134,16 @@ th, td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
-    vertical-align: top;
 }
 
 th {
     background-color: var(--secondary-color);
     font-weight: 600;
     color: var(--text-color);
-    padding: 1rem;
 }
 
 tr:hover {
     background-color: #f8f9fa;
-}
-
-/* Make URLs break and wrap */
-td:first-child {
-    word-break: break-word;
-    max-width: 200px; /* Limit width to prevent super long lines */
 }
 
 .short-url {
@@ -159,9 +151,6 @@ td:first-child {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
-    word-break: break-word;
-    display: inline-block;
-    max-width: 100%;
 }
 
 .short-url:hover {
@@ -207,6 +196,15 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Make URLs wrap and truncate with ellipsis */
+tr td:first-child {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
@@ -223,12 +221,75 @@ footer {
     }
 
     main {
-        padding: 1rem 0.5rem;
+        padding: 1rem;
     }
 
-    /* .input-group {
+        .input-group {
         flex-direction: column;
-    } */
+    }
+    
+    /* Make table cells stack on mobile */
+    table, thead, tbody, th, td, tr { 
+        display: block; 
+    }
+    
+    /* Hide table headers on mobile */
+    thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 0.5rem;
+    }
+    
+    td {
+        border: none;
+        position: relative;
+        padding-left: 40%;
+        min-height: 2.5em;
+    }
+    
+    td:before {
+        position: absolute;
+        left: 0.5rem;
+        width: 35%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+    
+    /* Label the data */
+    td:nth-of-type(1):before { content: "Original URL"; }
+    td:nth-of-type(2):before { content: "Short URL"; }
+    td:nth-of-type(3):before { content: "Date"; }
+    td:nth-of-type(4):before { content: "Actions"; }
+    
+    /* Make action buttons take full width */
+    .actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        padding-left: 0;
+    }
+    
+    /* Make URLs wrap and take full width */
+    tr td:first-child {
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-all;
+        padding-left: 0.5rem;
+    }
+    
+    tr td:first-child:before {
+        position: static;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
 
     .btn-shorten {
         width: 100%;
@@ -236,79 +297,13 @@ footer {
         padding: 12px;
     }
 
-    /* Improved table layout for mobile */
-    .table-responsive {
-        border: 1px solid var(--border-color);
-        border-radius: var(--border-radius);
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    table {
-        width: 100%;
-        min-width: 600px; /* Allows horizontal scrolling on very small screens */
-    }
-
     th, td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
     }
 
-    /* Make table cells stack on very small screens */
-    @media (max-width: 480px) {
-        table, thead, tbody, th, td, tr {
-            display: block;
-        }
-
-        thead tr {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
-
-        tr {
-            border: 1px solid var(--border-color);
-            margin-bottom: 1rem;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-
-        td {
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-            padding-left: 50%;
-            min-height: 2.5em;
-            display: flex;
-            align-items: center;
-        }
-
-        td:before {
-            position: absolute;
-            left: 0.5rem;
-            width: 45%;
-            padding-right: 10px;
-            white-space: nowrap;
-            font-weight: 600;
-            content: attr(data-label);
-        }
-
-        /* Label each cell */
-        td:nth-of-type(1):before { content: 'Original URL'; }
-        td:nth-of-type(2):before { content: 'Short URL'; }
-        td:nth-of-type(3):before { content: 'Date'; }
-        td:nth-of-type(4):before { content: 'Actions'; }
-        
-        /* Make actions full width */
-        .actions {
-            justify-content: flex-end;
-            padding-left: 0;
-        }
-    }
-
     .actions {
-        flex-wrap: nowrap;
-        gap: 5px;
+        flex-wrap: wrap;
     }
 }
 
