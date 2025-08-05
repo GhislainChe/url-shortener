@@ -45,18 +45,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const row = document.createElement('tr');
             
             row.innerHTML = `
-                <td class="truncate">${item.originalUrl}</td>
-                <td><a href="#" class="short-url">${item.shortUrl}</a></td>
-                <td>${item.date}</td>
+                <td class="truncate">
+                    <span class="mobile-label">Original URL:</span>
+                    <div class="url-content">${item.originalUrl}</div>
+                </td>
+                <td class="short-url-cell">
+                    <span class="mobile-label">Short URL:</span>
+                    <a href="#" class="short-url">${item.shortUrl}</a>
+                </td>
+                <td class="date-cell">
+                    <span class="mobile-label">Date:</span>
+                    <span>${item.date}</span>
+                </td>
                 <td class="actions">
                     <button class="btn-copy" title="Copy">
                         <i class="far fa-copy"></i>
+                        <span class="action-label">Copy</span>
                     </button>
                     <button class="btn-edit" title="Edit">
                         <i class="far fa-edit"></i>
+                        <span class="action-label">Edit</span>
                     </button>
                     <button class="btn-delete" title="Delete">
                         <i class="far fa-trash-alt"></i>
+                        <span class="action-label">Delete</span>
                     </button>
                 </td>
             `;

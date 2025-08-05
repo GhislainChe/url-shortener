@@ -137,10 +137,36 @@ th, td {
     vertical-align: top;
 }
 
-td:first-child {
-    max-width: 200px;
+td {
+    position: relative;
+    padding-left: 120px;
+}
+
+td .mobile-label {
+    display: none;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-right: 8px;
+}
+
+td .url-content {
     word-break: break-word;
-    overflow-wrap: break-word;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    td {
+        padding: 1rem;
+        padding-left: 1rem;
+    }
+    
+    td:first-child {
+        max-width: 300px;
+    }
+    
+    td .mobile-label {
+        display: none;
+    }
 }
 
 th {
@@ -232,32 +258,55 @@ footer {
         padding: 12px;
     }
 
+    /* Table styles for mobile */
+    .table-responsive {
+        box-shadow: none;
+        overflow-x: visible;
+    }
+
+    table {
+        width: 100%;
+    }
+
     th, td {
-        padding: 0.5rem;
-        font-size: 0.85rem;
+        padding: 0.5rem 0.5rem 0.5rem 120px;
+        font-size: 0.9rem;
         display: block;
         width: 100%;
         box-sizing: border-box;
-    }
-
-    td:first-child {
-        max-width: 100%;
+        position: relative;
+        min-height: 2.5rem;
+        border: none;
+        padding-top: 0.25rem;
         padding-bottom: 0.25rem;
     }
 
-    td:nth-child(2) {
-        font-weight: 600;
+    td .mobile-label {
+        display: inline-block;
+        position: absolute;
+        left: 0.5rem;
+        top: 0.5rem;
+        width: 110px;
+        padding-right: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--text-light);
     }
 
-    td:last-child {
-        padding-top: 0.25rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid var(--border-color);
+    .short-url-cell .mobile-label {
+        top: 0.25rem;
     }
 
     .actions {
+        display: flex;
         justify-content: flex-start;
         gap: 0.5rem;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid #eee;
+    }
+
+    .action-label {
+        display: none; /* Hide labels on mobile for now */
     }
 
     /* Make table rows stack on mobile */
@@ -266,12 +315,20 @@ footer {
         margin-bottom: 1rem;
         border: 1px solid var(--border-color);
         border-radius: var(--border-radius);
-        padding: 0.5rem;
+        padding: 0.75rem 0.5rem;
+        position: relative;
     }
 
     /* Hide table header on mobile */
     thead {
         display: none;
+    }
+    
+    /* Make sure the URL content is properly aligned */
+    .url-content {
+        display: inline-block;
+        width: 100%;
+        word-break: break-all;
     }
 }
 
