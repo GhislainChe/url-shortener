@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const sampleData = [
         {
             originalUrl: 'https://example.com/very/long/url/that/needs/to/be/shortened',
-            shortUrl: 'short.ly/abc123',
-            date: '2023-05-15'
+            shortUrl: 'ghislain-che.netlify.app',
+            date: '2025-08-05'
         },
         {
             originalUrl: 'https://another-example.com/another/very/long/url',
-            shortUrl: 'short.ly/def456',
-            date: '2023-05-16'
+            shortUrl: 'ghislain-expense-tracker.netlify.app',
+            date: '2025-08-05'
         }
     ];
 
